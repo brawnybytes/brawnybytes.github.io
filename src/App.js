@@ -1,11 +1,11 @@
 import './App.css';
-import lo from './resources/img/logo.png';
+import logo from './resources/img/logo.png';
 
 function App() {
   return (
     <div className="App">
       <header>
-        <img src={lo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
         <h1>Coming Soon</h1>
         <p>We're working hard to bring you something amazing. Stay tuned!</p>
       </header>
