@@ -105,10 +105,7 @@ const Section = ({ id, title, className, bgUrl }) => {
       <div className="wrapper-outer">
         <div className="wrapper-inner">
           <div className="background" style={{ backgroundImage: `url(${bgUrl})` }}>
-
             <h2 className="section-title">{title}</h2>
-            {/* <br />
-            <p style={{ width: 600 }}> Nova Enigma is a dynamic startup specializing in software services tailored to meet the specific needs of businesses. Our dedicated team combines technical expertise with a customer-centric approach to deliver practical solutions that enhance efficiency and drive success in today's competitive market.</p> */}
           </div>
         </div>
       </div>
