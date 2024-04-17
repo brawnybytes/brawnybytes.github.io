@@ -13,7 +13,9 @@ $bg-gradient: linear-gradient(180deg,
 }
 
 a {
-    color: #fff;
+   // color: #fff;
+    color: black;
+    font-size: 16px;
     text-decoration: none;
     font-family: "Nunito Sans", sans-serif;
     transition: color 0.3s, text-shadow 0.3s;
@@ -47,8 +49,10 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    color: white;
-    background: black;
+    //width: 110px;
+    //color: white;
+  //  background: black;
+    background: #ffffff;
     font-family: "Inter", sans-serif;
     text-transform: uppercase;
 }
@@ -70,19 +74,37 @@ h2:hover {
     text-shadow: 0 0 10px hsl(0, 0, 80%);
 }
 
+.container
+{
+    background: #ffffff;
+}
+.tool
+{
+    width: 104px;
+}
 header {
+    top: 0;
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5%;
+    padding: 0;
     width: 100%;
     z-index: 3;
-    height: 7em;
+    height: 5em;
     font-family: "Inter", sans-serif;
     font-size: clamp(0.66rem, 2vw, 1rem);
     letter-spacing: 0.1em;
+   // background-color: #1976d2;
+   background-color: #ffffff;
+
 }
+.navHeader
+{
+    padding-left: 100px;
+}
+
+
 
 .section {
     height: 100%;
