@@ -4,8 +4,14 @@ import './App.css';
 import './App.scss';
 import contact from './resources/img/contact.jpg';
 import services from './resources/img/services.jpg';
+import RequestDemoDialog from './components/RequestDemoDialog';
+import { useState } from 'react';
 
 const App = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = (row) => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   useEffect(() => {
     let sections = document.querySelectorAll(".section"),
       images = document.querySelectorAll(".background"),
@@ -85,18 +91,26 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app-container">
-      <header className="header">
-        <nav>
-          <a href="#first">Home</a>&nbsp;&nbsp;
-          <a href="#second">Services</a>&nbsp;&nbsp;
-          <a href="#fifth">Contact</a>
-        </nav>
-      </header>
-      <Section id="first" title="Nova Enigma" className="first" bgUrl="https://images.unsplash.com/photo-1605629713998-167cdc70afa2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTg2OTM1NTR8&ixlib=rb-4.0.3&q=85" />
-      <Section id="second" title="Services" className="second" bgUrl={services} />
-      <Section id="fifth" title="Contact" className="fifth" bgUrl={contact} />
-    </div>
+    <>
+      <div className="app-container">
+        <header className="header">
+          <nav>
+            <a href="#first">Home</a>&nbsp;&nbsp;
+            <a href="#second">Services</a>&nbsp;&nbsp;
+            <a href="#fifth" onClick={handleOpen}>Contact</a>
+          </nav>
+        </header>
+        <Section id="first" title="Nova Enigma" className="first" bgUrl="https://images.unsplash.com/photo-1605629713998-167cdc70afa2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTg2OTM1NTR8&ixlib=rb-4.0.3&q=85" />
+        <Section id="second" title="Services" className="second" bgUrl={services} />
+        <Section id="fifth" title="Contact" className="fifth" bgUrl={contact} />
+      </div>
+      {open && (
+        <RequestDemoDialog
+          open={open}
+          handleClose={handleClose}
+        />
+      )}
+    </>
   );
 };
 const Section = ({ id, title, className, bgUrl }) => {
