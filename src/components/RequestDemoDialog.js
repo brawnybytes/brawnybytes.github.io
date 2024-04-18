@@ -27,27 +27,43 @@ export default function RequestDemoDialog({ handleClose, open }) {
         e.preventDefault();
 
         try {
-            setShowAlert(false)
-            if (!email || !name) {
-                setShowAlert(true)
+            setShowAlert(false);
+
+            // Trim the email and name if they are defined
+            const trimmedEmail = email?.trim();
+            const trimmedName = name?.trim();
+
+            // Check if trimmed email or name is empty
+            if (!trimmedEmail || !trimmedName) {
+                setShowAlert(true);
                 return;
             }
 
             // Regular expression for email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+            // Regular expression for name validation (allows letters, spaces, hyphens, and apostrophes)
+            const nameRegex = /^[a-zA-Z\s'-]+$/;
+
             // Check if the email matches the regex pattern
-            if (!emailRegex.test(email)) {
-                setShowAlert(true)
+            if (!emailRegex.test(trimmedEmail)) {
+                setShowAlert(true);
+                return;
+            }
+
+            // Check if the name matches the regex pattern
+            if (!nameRegex.test(trimmedName)) {
+                setShowAlert(true);
                 return;
             }
 
             const request = {
-                name: name,
-                email: email
-            }
+                name: trimmedName,
+                email: trimmedEmail
+            };
+
             const responseData = await sendEmail(request);
-            console.log(responseData)
+            console.log(responseData);
         } catch (error) {
             console.log(error.message)
         }
