@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import { useState } from 'react';
 import { sendEmail } from '../services/EmailService';
+import Alert from '@mui/material/Alert';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -20,11 +21,27 @@ export default function RequestDemoDialog({ handleClose, open }) {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
+            setShowAlert(false)
+            if (!email || !name) {
+                setShowAlert(true)
+                return;
+            }
+
+            // Regular expression for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Check if the email matches the regex pattern
+            if (!emailRegex.test(email)) {
+                setShowAlert(true)
+                return;
+            }
+
             const request = {
                 name: name,
                 email: email
@@ -73,6 +90,25 @@ export default function RequestDemoDialog({ handleClose, open }) {
                 fontWeight: "bold !important",
                 padding: "30px !important"
             }}>
+                {showAlert && (<Alert
+                    severity="error"
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setShowAlert(false);
+                            }}
+                        >
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                    }
+                    sx={{ mb: 2 }}
+                >
+                    Oops! invalid input!
+                </Alert>)
+                }
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography sx={{
@@ -84,6 +120,7 @@ export default function RequestDemoDialog({ handleClose, open }) {
 
                         }}
                             placeholder="Name"
+                            required
                             variant="outlined"
                             fullWidth
                             id="name"
@@ -100,13 +137,15 @@ export default function RequestDemoDialog({ handleClose, open }) {
                             placeholder="Email"
                             variant="outlined"
                             fullWidth
+                            required
+                            type="email"
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Grid>
                 </Grid>
-            </DialogContent>
+            </DialogContent >
             <DialogActions sx={{
                 padding: "20px !important"
             }}>
@@ -117,6 +156,6 @@ export default function RequestDemoDialog({ handleClose, open }) {
                     Submit
                 </Button>
             </DialogActions>
-        </BootstrapDialog>
+        </BootstrapDialog >
     );
 }
