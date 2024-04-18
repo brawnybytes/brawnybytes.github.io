@@ -101,8 +101,8 @@ const App = () => {
           </nav>
         </header>
         <Section id="first" title="Nova Enigma" className="first" bgUrl="https://images.unsplash.com/photo-1605629713998-167cdc70afa2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTg2OTM1NTR8&ixlib=rb-4.0.3&q=85" />
-        <Section id="second" title="Services" className="second" bgUrl={services} />
-        <Section id="fifth" title="Contact" className="fifth" bgUrl={contact} />
+        <Section id="second" title="" className="second" bgUrl={services} />
+        <Section id="fifth" title="" className="fifth" bgUrl={contact} />
       </div>
       {open && (
         <RequestDemoDialog
@@ -119,7 +119,7 @@ const Section = ({ id, title, className, bgUrl }) => {
       <div className="wrapper-outer">
         <div className="wrapper-inner">
           <div className="background" style={{ backgroundImage: `url(${bgUrl})` }}>
-            <h2 className="section-title">{title}</h2>
+            <h2 className="section-title title">{title}</h2>
           </div>
         </div>
       </div>
