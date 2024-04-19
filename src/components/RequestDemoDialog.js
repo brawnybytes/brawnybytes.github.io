@@ -16,9 +16,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-
 export default function RequestDemoDialog({ handleClose, open }) {
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [showAlert, setShowAlert] = useState(false);
@@ -29,43 +27,27 @@ export default function RequestDemoDialog({ handleClose, open }) {
         try {
             setShowAlert(false);
 
-            // Trim the email and name if they are defined
             const trimmedEmail = email?.trim();
             const trimmedName = name?.trim();
 
-            // Check if trimmed email or name is empty
             if (!trimmedEmail || !trimmedName) {
                 setShowAlert(true);
                 return;
             }
 
-            // Regular expression for email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            // Regular expression for name validation (allows letters, spaces, hyphens, and apostrophes)
             const nameRegex = /^[a-zA-Z\s'-]+$/;
 
-            // Check if the email matches the regex pattern
-            if (!emailRegex.test(trimmedEmail)) {
+            if (!emailRegex.test(trimmedEmail) || !nameRegex.test(trimmedName)) {
                 setShowAlert(true);
                 return;
             }
 
-            // Check if the name matches the regex pattern
-            if (!nameRegex.test(trimmedName)) {
-                setShowAlert(true);
-                return;
-            }
-
-            const request = {
-                name: trimmedName,
-                email: trimmedEmail
-            };
-
+            const request = { name: trimmedName, email: trimmedEmail };
             const responseData = await sendEmail(request);
             console.log(responseData);
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
         }
 
         handleClose();
@@ -76,102 +58,56 @@ export default function RequestDemoDialog({ handleClose, open }) {
             onClose={handleClose}
             aria-labelledby="customized-dialog-title"
             open={open}
-            sx={{
-                fontWeight: "bold",
-                backgroundColor: "transparent !important", // Transparent background
-                boxShadow: "none !important", // No box shadow
-            }}
             PaperProps={{
-                sx: {
-                    backgroundColor: "rgba(255, 255, 255, 0.5)", // Transparent black background
-                },
+                sx: { backgroundColor: "rgba(255, 255, 255, 0.7)" }, // Adjust background opacity
             }}
         >
-            <DialogTitle sx={{ m: 0, fontWeight: "bold", padding: "20px !important" }} id="customized-dialog-title">
+            <DialogTitle sx={{ fontWeight: "bold" }} id="customized-dialog-title">
                 Contact
+                <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 0, top: 0, color: 'black' }}>
+                    <CloseIcon />
+                </IconButton>
             </DialogTitle>
-            <IconButton
-                aria-label="close"
-                onClick={handleClose}
-                sx={{
-                    position: 'absolute',
-                    right: 8,
-                    top: 8,
-                    color: 'black',
-                }}
-            >
-                <CloseIcon />
-            </IconButton>
-            <DialogContent dividers sx={{
-                fontWeight: "bold !important",
-                padding: "30px !important"
-            }}>
-                {showAlert && (<Alert
-                    severity="error"
-                    action={
-                        <IconButton
-                            aria-label="close"
-                            color="inherit"
-                            size="small"
-                            onClick={() => {
-                                setShowAlert(false);
-                            }}
-                        >
-                            <CloseIcon fontSize="inherit" />
-                        </IconButton>
-                    }
-                    sx={{ mb: 2 }}
-                >
-                    Oops! invalid input!
-                </Alert>)
-                }
-                <Grid container spacing={2}>
+            <DialogContent dividers>
+                {showAlert && (
+                    <Alert severity="error" onClose={() => setShowAlert(false)} sx={{ mb: 2 }}>
+                        Oops! Invalid input.
+                    </Alert>
+                )}
+                <Grid container spacing={2} alignItems="center">
                     <Grid item xs={12}>
-                        <Typography sx={{
-                            fontWeight: "bold !important",
-
-                        }} variant="h5">Enter Name</Typography>
-                        <TextField sx={{
-                            fontWeight: "bold !important",
-
-                        }}
-                            placeholder="Name"
-                            required
-                            variant="outlined"
+                        <Typography sx={{ fontWeight: "bold" }} variant="subtitle1">Name</Typography>
+                        <TextField
+                            placeholder="Enter your name"
                             fullWidth
-                            id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography sx={{
-                            fontWeight: "bold !important",
-
-                        }} variant="h5">Enter Email</Typography>
+                        <Typography sx={{ fontWeight: "bold" }} variant="subtitle1">Email</Typography>
                         <TextField
-                            placeholder="Email"
-                            variant="outlined"
+                            placeholder="Enter your email"
                             fullWidth
-                            required
                             type="email"
-                            id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Grid>
                 </Grid>
-            </DialogContent >
-            <DialogActions sx={{
-                padding: "20px !important"
-            }}>
-                <Button variant="contained" style={{
-                    color: "#000000",
-                    backgroundColor: "#ffffff", fontWeight: "bold"
-                }} autoFocus onClick={handleSubmit}>
+            </DialogContent>
+            <DialogActions>
+                <Button variant="contained" sx={{
+                    color: "#ffffff",
+                    backgroundColor: "#000000",
+                    fontWeight: "bold",
+                    "&:hover": {
+                        backgroundColor: "#222222", // Darken color on hover
+                    }
+                }} onClick={handleSubmit}>
                     Submit
                 </Button>
             </DialogActions>
-        </BootstrapDialog >
+        </BootstrapDialog>
     );
 }
