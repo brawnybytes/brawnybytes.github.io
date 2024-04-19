@@ -45,7 +45,6 @@ export default function RequestDemoDialog({ handleClose, open }) {
 
             const request = { name: trimmedName, email: trimmedEmail };
             const responseData = await sendEmail(request);
-            console.log(responseData);
         } catch (error) {
             console.log(error.message);
         }
@@ -62,52 +61,56 @@ export default function RequestDemoDialog({ handleClose, open }) {
                 sx: { backgroundColor: "rgba(255, 255, 255, 0.7)" }, // Adjust background opacity
             }}
         >
-            <DialogTitle sx={{ fontWeight: "bold" }} id="customized-dialog-title">
-                Contact
-                <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 0, top: 0, color: 'black' }}>
-                    <CloseIcon />
-                </IconButton>
-            </DialogTitle>
-            <DialogContent dividers>
-                {showAlert && (
-                    <Alert severity="error" onClose={() => setShowAlert(false)} sx={{ mb: 2 }}>
-                        Oops! Invalid input.
-                    </Alert>
-                )}
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item xs={12}>
-                        <Typography sx={{ fontWeight: "bold" }} variant="subtitle1">Name</Typography>
-                        <TextField
-                            placeholder="Enter your name"
-                            fullWidth
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
+            <form onSubmit={handleSubmit}>
+                <DialogTitle sx={{ fontWeight: "bold" }} id="customized-dialog-title">
+                    Contact
+                    <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 0, top: 0, color: 'black' }}>
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
+                <DialogContent dividers>
+                    {showAlert && (
+                        <Alert severity="error" onClose={() => setShowAlert(false)} sx={{ mb: 2 }}>
+                            Oops! Invalid input.
+                        </Alert>
+                    )}
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item xs={12}>
+                            <Typography sx={{ fontWeight: "bold" }} variant="subtitle1">Name</Typography>
+                            <TextField
+                                placeholder="Enter your name"
+                                fullWidth
+                                required
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography sx={{ fontWeight: "bold" }} variant="subtitle1">Email</Typography>
+                            <TextField
+                                placeholder="Enter your email"
+                                fullWidth
+                                type="email"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography sx={{ fontWeight: "bold" }} variant="subtitle1">Email</Typography>
-                        <TextField
-                            placeholder="Enter your email"
-                            fullWidth
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </Grid>
-                </Grid>
-            </DialogContent>
-            <DialogActions>
-                <Button variant="contained" sx={{
-                    color: "#ffffff",
-                    backgroundColor: "#000000",
-                    fontWeight: "bold",
-                    "&:hover": {
-                        backgroundColor: "#222222", // Darken color on hover
-                    }
-                }} onClick={handleSubmit}>
-                    Submit
-                </Button>
-            </DialogActions>
-        </BootstrapDialog>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="contained" sx={{
+                        color: "#ffffff",
+                        backgroundColor: "#000000",
+                        fontWeight: "bold",
+                        "&:hover": {
+                            backgroundColor: "#222222", // Darken color on hover
+                        }
+                    }} type='submit'>
+                        Submit
+                    </Button>
+                </DialogActions>
+            </form>
+        </BootstrapDialog >
     );
 }
