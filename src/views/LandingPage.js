@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { useEffect } from 'react';
 import contact from '../resources/img/contact.jpg';
 import services from '../resources/img/services.jpg';
+import main_page from '../resources/img/nova_main.jpeg';
 import RequestDemoDialog from '../components/RequestDemoDialog';
 import { useState } from 'react';
 import '../App.css'
@@ -101,7 +102,7 @@ export const LandingPage = () => {
                         <a href="#fifth" onClick={handleOpen}>Contact</a>
                     </nav>
                 </header>
-                <Section id="first" title="Nova Enigma" className="first" bgUrl="https://images.unsplash.com/photo-1605629713998-167cdc70afa2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTg2OTM1NTR8&ixlib=rb-4.0.3&q=85" />
+                <Section id="first" title="Nova Enigma" className="first" bgUrl={main_page} />
                 <Section id="second" title="" className="second" bgUrl={services} />
                 <Section id="fifth" title="" className="fifth" bgUrl={contact} />
             </div>
