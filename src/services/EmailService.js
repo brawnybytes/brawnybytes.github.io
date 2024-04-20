@@ -1,5 +1,6 @@
 
 const BASE_URL = 'https://api.novaenigma.com';
+// const BASE_URL = 'http://localhost:8080';
 
 async function sendEmail(data) {
     try {
@@ -12,13 +13,14 @@ async function sendEmail(data) {
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(await response.text()); // Throw the response text as error
         }
 
-        return await response.json();
+        return await response.text(); // Return the response text
     } catch (error) {
-        throw new Error('Error while fetching data:', error);
+        throw new Error(error.message);
     }
 }
+
 
 export { sendEmail };

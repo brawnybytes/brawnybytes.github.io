@@ -20,6 +20,7 @@ export default function RequestDemoDialog({ handleClose, open }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("Something went wrong!");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,6 +33,7 @@ export default function RequestDemoDialog({ handleClose, open }) {
 
             if (!trimmedEmail || !trimmedName) {
                 setShowAlert(true);
+                setAlertMessage("Oops! Invalid input.")
                 return;
             }
 
@@ -40,16 +42,19 @@ export default function RequestDemoDialog({ handleClose, open }) {
 
             if (!emailRegex.test(trimmedEmail) || !nameRegex.test(trimmedName)) {
                 setShowAlert(true);
+                setAlertMessage("Oops! Invalid input.")
                 return;
             }
 
             const request = { name: trimmedName, email: trimmedEmail };
             const responseData = await sendEmail(request);
+            console.log("responseData: ", responseData)
+            handleClose();
         } catch (error) {
-            console.log(error.message);
+            setShowAlert(true);
+            setAlertMessage("Something went wrong!")
+            console.log("Error: ", error.message)
         }
-
-        handleClose();
     };
 
     return (
@@ -71,7 +76,7 @@ export default function RequestDemoDialog({ handleClose, open }) {
                 <DialogContent dividers>
                     {showAlert && (
                         <Alert severity="error" onClose={() => setShowAlert(false)} sx={{ mb: 2 }}>
-                            Oops! Invalid input.
+                            {alertMessage}
                         </Alert>
                     )}
                     <Grid container spacing={2} alignItems="center">
