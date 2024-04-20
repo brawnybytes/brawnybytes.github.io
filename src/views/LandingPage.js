@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import contact from '../resources/img/contact.jpg';
 import services from '../resources/img/services.jpg';
 import nova_main from '../resources/img/nova_main.jpeg';
+import logo_close_transparent from '../resources/img/transparent/logo_close_transparent.png';
+import logo_transparent from '../resources/img/transparent/logo_transparent.png';
 import RequestDemoDialog from '../components/RequestDemoDialog';
 import { useState } from 'react';
 import '../App.css'
@@ -122,7 +124,10 @@ const Section = ({ id, title, className, bgUrl }) => {
             <div className="wrapper-outer">
                 <div className="wrapper-inner">
                     <div className="background" style={{ backgroundImage: `url(${bgUrl})` }}>
-                        <h2 className="section-title title">{title}</h2>
+                        <div style={{ textAlign: 'center' }} >
+                            {title && (<img height={200} src={logo_close_transparent} />)}
+                            <h2 className="section-title title">{title}</h2>
+                        </div>
                     </div>
                 </div>
             </div>
