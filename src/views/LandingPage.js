@@ -6,6 +6,7 @@ import nova_main from '../resources/img/nova_main.jpeg';
 import logo_close_transparent from '../resources/img/transparent/logo_close_transparent.png';
 import logo_transparent from '../resources/img/transparent/logo_transparent.png';
 import RequestDemoDialog from '../components/RequestDemoDialog';
+import ServiceDemoDialog from '../components/ServiceDemoDialog';
 import { useState } from 'react';
 import '../App.css'
 import '../App.scss'
@@ -13,8 +14,13 @@ import '../App.scss'
 export const LandingPage = () => {
 
     const [open, setOpen] = useState(false);
+    const [openService, setOpenServices] = useState(false);
     const handleOpen = (row) => setOpen(true);
+    const handleOpenServices = (row) => setOpenServices(true);
+
+
     const handleClose = () => setOpen(false);
+    const handleCloseService = () => setOpenServices(false);
 
     useEffect(() => {
         let sections = document.querySelectorAll(".section"),
@@ -100,7 +106,7 @@ export const LandingPage = () => {
                 <header className="header">
                     <nav>
                         <a href="#first">Home</a>&nbsp;&nbsp;
-                        <a href="#second">Services</a>&nbsp;&nbsp;
+                        <a href="#second" onClick={handleOpenServices}>Services</a>&nbsp;&nbsp;
                         <a href="#fifth" onClick={handleOpen}>Contact</a>
                     </nav>
                 </header>
@@ -112,6 +118,13 @@ export const LandingPage = () => {
                 <RequestDemoDialog
                     open={open}
                     handleClose={handleClose}
+                />
+            )}
+
+            {openService && (
+                <ServiceDemoDialog
+                openService={openService}
+                handleCloseService={handleCloseService}
                 />
             )}
         </>
