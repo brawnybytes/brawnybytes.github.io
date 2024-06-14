@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.7ee77bb7.css",
-    "main.js": "/static/js/main.4558004c.js",
-    "static/js/453.d5900de1.chunk.js": "/static/js/453.d5900de1.chunk.js",
-    "static/media/nova_main.jpeg": "/static/media/nova_main.6bd15c00ed4d9f96dc35.jpeg",
-    "static/media/pixels.jpg": "/static/media/pixels.4d022893bfdd00ca43b0.jpg",
-    "static/media/services.jpg": "/static/media/services.f3684db20e0ee7544ed2.jpg",
-    "static/media/tech-3.jpg": "/static/media/tech-3.e26a6b0d5da78851f9f3.jpg",
-    "static/media/tech-1.jpg": "/static/media/tech-1.d45c692f3e9cd6388c61.jpg",
-    "static/media/logo_transparent.png": "/static/media/logo_transparent.69b63654b0304cffcd62.png",
-    "static/media/logo_close_transparent.png": "/static/media/logo_close_transparent.17b87b1cab2c17aa2027.png",
-    "index.html": "/index.html",
-    "main.7ee77bb7.css.map": "/static/css/main.7ee77bb7.css.map",
-    "main.4558004c.js.map": "/static/js/main.4558004c.js.map",
-    "453.d5900de1.chunk.js.map": "/static/js/453.d5900de1.chunk.js.map"
+    "main.css": "/nova-enigma/static/css/main.7ee77bb7.css",
+    "main.js": "/nova-enigma/static/js/main.d2cef8df.js",
+    "static/js/453.d5900de1.chunk.js": "/nova-enigma/static/js/453.d5900de1.chunk.js",
+    "static/media/nova_main.jpeg": "/nova-enigma/static/media/nova_main.6bd15c00ed4d9f96dc35.jpeg",
+    "static/media/pixels.jpg": "/nova-enigma/static/media/pixels.4d022893bfdd00ca43b0.jpg",
+    "static/media/services.jpg": "/nova-enigma/static/media/services.f3684db20e0ee7544ed2.jpg",
+    "static/media/tech-3.jpg": "/nova-enigma/static/media/tech-3.e26a6b0d5da78851f9f3.jpg",
+    "static/media/tech-1.jpg": "/nova-enigma/static/media/tech-1.d45c692f3e9cd6388c61.jpg",
+    "static/media/logo_transparent.png": "/nova-enigma/static/media/logo_transparent.69b63654b0304cffcd62.png",
+    "static/media/logo_close_transparent.png": "/nova-enigma/static/media/logo_close_transparent.17b87b1cab2c17aa2027.png",
+    "index.html": "/nova-enigma/index.html",
+    "main.7ee77bb7.css.map": "/nova-enigma/static/css/main.7ee77bb7.css.map",
+    "main.d2cef8df.js.map": "/nova-enigma/static/js/main.d2cef8df.js.map",
+    "453.d5900de1.chunk.js.map": "/nova-enigma/static/js/453.d5900de1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7ee77bb7.css",
-    "static/js/main.4558004c.js"
+    "static/js/main.d2cef8df.js"
   ]
 }
